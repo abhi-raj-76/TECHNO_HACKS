@@ -43,7 +43,7 @@ public class LibraryServiceImple implements LibraryService
     @Override
     public LibraryModel getLibraryModel(String bookId) 
     {
-        if(libraryRepository.findById(bookId.isEmpty()))
+        if(libraryRepository.findById(bookId).isEmpty())
         {throw new LibraryBookNotFoundException("Requested Book not in Library");}
         return libraryRepository.findById(bookId).get();
     }
