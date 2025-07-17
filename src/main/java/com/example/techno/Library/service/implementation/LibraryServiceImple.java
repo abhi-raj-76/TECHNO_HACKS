@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.techno.Library.Exception.LibraryBookNotFoundException;
 import com.example.techno.Library.Model.LibraryModel;
 import com.example.techno.Library.repository.LibraryRepository;
 import com.example.techno.Library.service.LibraryService;
@@ -42,6 +43,8 @@ public class LibraryServiceImple implements LibraryService
     @Override
     public LibraryModel getLibraryModel(String bookId) 
     {
+        if(libraryRepository.findById(bookId.isEmpty()))
+        {throw new LibraryBookNotFoundException("Requested Book not in Library");}
         return libraryRepository.findById(bookId).get();
     }
 
